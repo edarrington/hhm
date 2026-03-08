@@ -1,5 +1,8 @@
 """Test configuration"""
 import pytest
+import os
+os.environ["DATABASE_URL"] = "sqlite:///:memory:"
+
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker

@@ -6,6 +6,7 @@ from datetime import datetime
 from src.config import get_settings
 from src.database import init_db
 from src.schemas import HealthResponse
+from src.skills import get_enabled_skill_routers
 import logging
 
 settings = get_settings()
@@ -64,6 +65,25 @@ def create_app() -> FastAPI:
             "version": settings.api_version,
             "docs": "/docs",
         }
+    
+    # Skills endpoint - list available household skills
+    @app.get("/skills")
+    async def list_skills():
+        """List enabled household skills"""
+        from src.skills import get_enabled_skills
+        skills = get_enabled_skills()
+        return {
+            "count": len(skills),
+            "skills": [{"id": s.id, "enabled": s.is_enabled()} for s in skills],
+        }
+    
+    # Register skill routers
+    skill_routers = get_enabled_skill_routers()
+    for router in skill_routers:
+        app.include_router(router)
+    
+    if skill_routers:
+        logger.info(f"Registered {len(skill_routers)} skill routers")
     
     logger.info("FastAPI application created successfully")
     return app

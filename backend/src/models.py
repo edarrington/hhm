@@ -84,7 +84,7 @@ class Memory(Base):
     household_id = Column(UUID(as_uuid=True), ForeignKey("households.id"), nullable=False)
     memory_type = Column(String(50), nullable=False)  # fact, event, preference, relationship
     content = Column(Text, nullable=False)
-    metadata = Column(JSON, default={})
+    meta = Column(JSON, default={})
     embedding = Column(JSON)  # Vector embedding for semantic search
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow)
     updated_at = Column(DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
