@@ -35,6 +35,9 @@ class Settings(BaseSettings):
     google_redirect_uri: str = "http://localhost:3000/auth/callback"
     
     # Todoist
+    todoist_client_id: str = ""
+    todoist_client_secret: str = ""
+    todoist_redirect_uri: str = "http://localhost:3000/auth/todoist/callback"
     todoist_api_token: str = ""
     
     # Authentication
