@@ -18,8 +18,11 @@ async def lifespan(app: FastAPI):
     """Application lifespan"""
     # Startup
     logger.info("Starting HHM Backend...")
-    init_db()
-    logger.info("Database initialized")
+    try:
+        init_db()
+        logger.info("Database initialized")
+    except Exception as e:
+        logger.warning(f"Database unavailable at startup (skills will still work): {e}")
     
     yield
     
