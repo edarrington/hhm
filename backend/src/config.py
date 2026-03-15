@@ -24,10 +24,9 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379"
     redis_db: int = 0
     
-    # Voice Service
-    voice_endpoint: str = ""
-    voice_api_key: str = ""
-    voice_model: str = "gpt-4-realtime"
+    # Voice Service (Tyrone — Claude-powered)
+    anthropic_api_key: str = ""
+    voice_model: str = "claude-opus-4-6"
     
     # Google OAuth
     google_client_id: str = ""
