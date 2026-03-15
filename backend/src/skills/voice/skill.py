@@ -42,11 +42,14 @@ Rules:
 - If you genuinely don't have the info, say so plainly: "Not sure about that."
 - You know both Erick and Jewel. Refer to them by name when relevant."""
 
-TOOLS = [
+SERVER_TOOLS = [
     {
         "type": "web_search_20260209",
         "name": "web_search",
     },
+]
+
+USER_TOOLS = [
     {
         "name": "create_calendar_event",
         "description": "Create a new event on the household Google Calendar.",
@@ -139,7 +142,7 @@ async def voice_chat(
             model=settings.voice_model,
             max_tokens=200,
             system=system,
-            tools=TOOLS if execute_tool else [],
+            tools=SERVER_TOOLS + (USER_TOOLS if execute_tool else []),
             messages=messages,
         )
 
