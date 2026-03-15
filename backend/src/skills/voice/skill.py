@@ -44,6 +44,10 @@ Rules:
 
 TOOLS = [
     {
+        "type": "web_search_20260209",
+        "name": "web_search",
+    },
+    {
         "name": "create_calendar_event",
         "description": "Create a new event on the household Google Calendar.",
         "input_schema": {
